@@ -1,0 +1,58 @@
+#include "raum.h"
+
+raum::raum() {
+
+    cout<<"Name des Raums? ";
+    cin >> name;
+
+    cout<< "Kapazität? ";
+    cin >> kapazitaet;
+
+    cout << "---> Konferenzraum "
+         << name
+         <<" mit "
+         << kapazitaet
+         <<" Plätzen wurde angelegt."
+         <<endl;
+}
+
+void raum::reservieren(reservierung r)
+{
+    reservierungen.push_back(r);
+
+    cout << "reservierung "
+         << r.getNummer()
+         << " erfolgreich angelegt."
+         <<endl;
+
+}
+
+void raum::reservierungAnzeigen (int nummer)
+{
+    for (int i= 0; i < reservierungen.size(); i++){
+        if (reservierungen[i].getNummer() == nummer) {
+            reservierungen[i].anzeigen();
+            return;
+        }
+
+    }
+
+    cout << "Reservierung existiert nicht." << endl;
+}
+
+void raum::alleReservierungenAnzeigen()
+{
+    if(reservierungen.empty ())
+    {
+        cout << "Keine Reservierung vorhanden" << endl;
+        return;
+    }
+
+    for (int i = 0; i < reservierungen.size(); i++)
+{
+    reservierungen[i].anzeigen();
+
+        cout << "------------------------"<< endl;
+
+    }
+}
